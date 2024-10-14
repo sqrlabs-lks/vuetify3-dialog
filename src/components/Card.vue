@@ -75,7 +75,7 @@ onMounted(() => {
     setTimeout(() => {
       okButtonRef.value?.focus()
       window.console.log('ok button focused')
-    }, 200)
+    }, 500)
   })
 })
 </script>
