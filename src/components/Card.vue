@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { ref, computed, onMounted, nextTick } from 'vue';
 import { VBtn, VCard, VCardActions, VCardText, VCardTitle, VIcon } from 'vuetify/lib/components/index.mjs';
 
 const props = defineProps({
@@ -28,6 +28,10 @@ const props = defineProps({
   }
 })
 
+// ------- REFS -------
+const okButtonRef = ref()
+const cancelButtonRef = ref()
+
 // ------- EVENTS -------
 const emit = defineEmits(['buttonClicked'])
 
@@ -35,8 +39,8 @@ const emit = defineEmits(['buttonClicked'])
 const _buttons = computed(() => {
   if(props.buttons && props.buttons.length > 0) return props.buttons
   else return [
-    { key: 'cancel', title: 'Annuler', value: 'cancel', color: 'grey', variant: 'text' },
-    { key: 'ok', title: 'OK', value: 'ok', color: props.level, variant: 'tonal' }
+    { key: 'cancel', ref: cancelButtonRef, title: 'Annuler', value: 'cancel', color: 'grey', variant: 'text' },
+    { key: 'ok', ref: okButtonRef, title: 'OK', value: 'ok', color: props.level, variant: 'tonal' }
   ]
 })
 
@@ -64,6 +68,16 @@ const _color = computed(() => {
 function close(buttonKey: string | boolean){
   emit('buttonClicked', buttonKey)
 }
+
+// ------- EVENTS -------
+onMounted(() => {
+  nextTick(() => {
+    setTimeout(() => {
+      okButtonRef.value?.focus()
+      window.console.log('ok button focused')
+    }, 200)
+  })
+})
 </script>
 
 <template>
