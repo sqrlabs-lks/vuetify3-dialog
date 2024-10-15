@@ -40,7 +40,7 @@ const _buttons = computed(() => {
   if(props.buttons && props.buttons.length > 0) return props.buttons
   else return [
     { key: 'cancel', ref: 'cancelButtonRef', title: 'Annuler', value: 'cancel', color: 'grey', variant: 'text' },
-    { key: 'ok', ref: 'okButtonRef', title: 'OK', value: 'ok', color: props.level, variant: 'tonal' }
+    { key: 'ok', ref: 'okButtonRef', title: '확인', value: 'ok', color: props.level, variant: 'tonal' }
   ]
 })
 
@@ -88,6 +88,7 @@ onMounted(() => {
       <VBtn
         v-for="button in _buttons"
         :key="button.key"
+        :ref="button.ref"
         v-bind="button"
         :color="button.color || _color"
         @click="close(button.key)"
