@@ -37,8 +37,12 @@ const emit = defineEmits(['buttonClicked'])
 
 // ------- COMPUTED -------
 const _buttons = computed(() => {
-  if(props.buttons && props.buttons.length > 0) return props.buttons
-  else return [
+  // if(props.buttons && props.buttons.length > 0) return props.buttons
+  // else return [
+  //   { key: 'cancel', ref: 'cancelButtonRef', title: 'Annuler', value: 'cancel', color: 'grey', variant: 'text' },
+  //   { key: 'ok', ref: 'okButtonRef', title: '확인', value: 'ok', color: props.level, variant: 'tonal' }
+  // ]
+  return [
     { key: 'cancel', ref: 'cancelButtonRef', title: 'Annuler', value: 'cancel', color: 'grey', variant: 'text' },
     { key: 'ok', ref: 'okButtonRef', title: '확인', value: 'ok', color: props.level, variant: 'tonal' }
   ]
